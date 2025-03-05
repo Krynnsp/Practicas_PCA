@@ -48,6 +48,9 @@ public class ProductorConsumidor {
         }
     }
 
+
+
+
     // COMPLETAR CÖDIGO
     // Implementar la Clase Consumidor, de modo que imprima el valor consumido
 }

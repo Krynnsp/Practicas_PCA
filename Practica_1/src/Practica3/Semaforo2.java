@@ -3,7 +3,7 @@ package Practica3;
 import java.util.concurrent.Semaphore;
 
 public class Semaforo2 {
-    private final Semaphore semaforo = new Semaphore(1);
+    private final Semaphore semaforo = new Semaphore(2);
 
     public void ejecutarHilos() {
         Runnable tarea = () -> {
@@ -25,6 +25,12 @@ public class Semaforo2 {
 
         Thread hilo1 = new Thread(tarea, "Hilo 1");
         Thread hilo2 = new Thread(tarea, "Hilo 2");
+        Thread hilo3 = new Thread(tarea, "Hilo 3");
+
+        hilo1.start();
+        hilo2.start();
+        hilo3.start();
+
         //COMPLETAR EL CÓDIGO
         //lanzar los hilos
     }

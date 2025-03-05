@@ -1,25 +1,25 @@
 package Practica3;
 
+import java.util.concurrent.Semaphore;
+
 public class Semaforo3 {
     //COMPLETAR EL CÓDIGO
     //CONFIGURAR LOS SEMÁFOROS
-    //private final Semaphore semaforo1 = new Semaphore(XX); // Bloquea el hilo 1
-    //private final Semaphore semaforo2 = new Semaphore(XX); // Bloquea el hilo 2
-    //private final Semaphore semaforo3 = new Semaphore(XX); // Bloquea el hilo 3
+    private final Semaphore semaforo1 = new Semaphore(1); // Bloquea el hilo 1
+    private final Semaphore semaforo2 = new Semaphore(0); // Bloquea el hilo 2
+    private final Semaphore semaforo3 = new Semaphore(0); // Bloquea el hilo 3
 
     private final Runnable tarea = () -> {
         String nombreHilo = Thread.currentThread().getName();
 
+
         try {
             if (nombreHilo.equals("Hilo 1")) {
-                //COMPLETAR EL CÓDIGO
-                //comprobar bloqueo
+                    semaforo1.acquire();
             } else if (nombreHilo.equals("Hilo 2")) {
-                //COMPLETAR EL CÓDIGO
-                //comprobar bloqueo
+                    semaforo2.acquire();
             } else if (nombreHilo.equals("Hilo 3")) {
-                //COMPLETAR EL CÓDIGO
-                //comprobar bloqueo
+                    semaforo3.acquire();
             }
 
             System.out.println(nombreHilo + " iniciando...");
@@ -27,11 +27,12 @@ public class Semaforo3 {
             System.out.println(nombreHilo + " terminado.");
 
             if (nombreHilo.equals("Hilo 1")) {
-                //COMPLETAR EL CÓDIGO
-                //desbloquear
+                semaforo2.release();
             } else if (nombreHilo.equals("Hilo 2")) {
-                //COMPLETAR EL CÓDIGO
-                //desbloquear
+                semaforo3.release();
+            }
+            else{
+                semaforo1.release();
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
